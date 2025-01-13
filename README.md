@@ -18,7 +18,7 @@ Este proyecto forma parte de una serie de videos donde exploramos cada tema en p
 
 ## 🧭 Contenido de la Serie
 
-### **00 - Introducción**
+### **00 - Introducción** ✅
 
 -   **¿Por qué TypeScript?** Mejora la calidad del código con tipado estático y herramientas avanzadas.
 
