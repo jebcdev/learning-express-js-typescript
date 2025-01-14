@@ -22,12 +22,12 @@ Este proyecto forma parte de una serie de videos donde exploramos cada tema en p
 
 -   **¿Por qué TypeScript?** Mejora la calidad del código con tipado estático y herramientas avanzadas.
 
-### **01 - Instalación y Configuración Básica**
+### **01 - Instalación y Configuración Básica** ✅
 
 -   Configuración inicial con Node.js, TypeScript y Express.js.
 -   Creación de un proyecto funcional con soporte para TypeScript.
 
-### **02 - Instalar y Probar Express.js**
+### **02 - Instalar y Probar Express.js** ✅
 
 -   Configuración del servidor inicial con rutas básicas.
 -   Estructuración profesional del proyecto.

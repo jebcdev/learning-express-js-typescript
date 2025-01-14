@@ -1,0 +1,26 @@
+{
+    "name": "learning-express-js-typescript",
+    "version": "0.0.1",
+    "description": "¡Bienvenido a esta guía! 🌟 Aquí aprenderás cómo usar **Express.js** con **TypeScript** desde cero, combinando teoría, práctica y herramientas modernas para construir aplicaciones backend rápidas, escalables y seguras. Si alguna vez has sentido curiosidad por cómo crear APIs profesionales o deseas mejorar tu flujo de trabajo, ¡este es el lugar perfecto para empezar!",
+    "main": "./dist/app.js",
+    "scripts": {
+        "build": "tsc --watch",
+        "dev": "node --watch ./dist/app.js",
+        "start": "node ./dist/app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/dotenv": "^6.1.1",
+        "@types/node": "^22.10.6",
+        "@types/express": "^4.17.17"
+    }
+}
