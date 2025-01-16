@@ -32,13 +32,14 @@ Este proyecto forma parte de una serie de videos donde exploramos cada tema en p
 -   Configuración del servidor inicial con rutas básicas.
 -   Estructuración profesional del proyecto.
 
-### **03 - CRUD Básico**
+### **03 - CRUD Básico** ✅
 
 -   Implementación de rutas para crear, leer, actualizar y eliminar datos.
 -   Pruebas con herramientas como Postman o Thunder Client.
 
 ### **04 - Validación con Zod**
 
+-   Extra: Crear Funcion para el retorno de errores en el catch.
 -   Uso de **Zod** para validar datos de entrada.
 -   Ejemplos de validaciones comunes para endpoints API.
 
