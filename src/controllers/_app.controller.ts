@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { responseUtil } from "../utils/responses.util";
 
 type TAppController = {
     index: (req: Request, res: Response) => Promise<Response>;
@@ -9,19 +10,21 @@ const index = async (
     res: Response
 ): Promise<Response> => {
     try {
-        return res.status(200).json({
-            message: "Welcome to the API V1",
-            data: {
+        return responseUtil.SuccessResponse(
+            res,
+            "Welcome to the API",
+            {
                 author: "{ JEBC-DeV }",
                 version: "0.0.1",
-            },
-        });
+            }
+        );
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
-            message: "Internal Server Error",
-            data: error,
-        });
+        return responseUtil.ErrorResponse(
+            res,
+            "Internal Server Error",
+            error as object
+        );
     }
 };
 

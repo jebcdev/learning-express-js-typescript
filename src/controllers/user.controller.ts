@@ -1,95 +1,159 @@
 import { Request, Response } from "express";
 import { TUser } from "../types/user.types";
 import { userModel } from "../models/user.model";
+import { responseUtil } from "../utils/responses.util";
+import { userValidation } from "../validations/user.validation";
 
 type TUserController = {
-    getAll : (req: Request, res: Response)=> Promise<Response>;
-    getById:  (req: Request, res: Response)=> Promise<Response>;
-    create : (req: Request, res: Response)=> Promise<Response> ;
-    updateById :(req: Request, res: Response)=> Promise<Response>;
-    deleteById :(req: Request, res: Response)=>Promise<Response>;
+    getAll: (req: Request, res: Response) => Promise<Response>;
+    getById: (req: Request, res: Response) => Promise<Response>;
+    create: (req: Request, res: Response) => Promise<Response>;
+    updateById: (req: Request, res: Response) => Promise<Response>;
+    deleteById: (req: Request, res: Response) => Promise<Response>;
 };
 
-const getAll = async (req: Request, res: Response): Promise<Response> => {
+const getAll = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
     try {
-        const users:TUser[]|null= await userModel.getAll();
+        const users: TUser[] | null = await userModel.getAll();
 
-        if(!users) return res.status(404).json({message: "Users not found",data:null});
+        if (!users)
+            return responseUtil.ErrorResponse(
+                res,
+                "Users Not Found",
+                {}
+            );
 
-        return res.status(200).json({message: "Users List",data:users});
-        
+        return responseUtil.SuccessResponse(res, "Users List", users);
     } catch (error) {
         console.log(error);
-        
-        return res.status(500).json({message: "Internal server error",data:error});
+
+        return responseUtil.ErrorResponse(
+            res,
+            "Internal Server Error",
+            error as object
+        );
     }
 };
 
-const getById= async (req: Request, res: Response): Promise<Response> => {
+const getById = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
     try {
-        const id:number = parseInt(req.params.id);
-        const user:TUser|null= await userModel.getById(id);
+        const id: number = parseInt(req.params.id);
+        const user: TUser | null = await userModel.getById(id);
 
-        if(!user) return res.status(404).json({message: "User not found",data:null});
+        if (!user)
+            return responseUtil.ErrorResponse(
+                res,
+                "User Not Found",
+                {}
+            );
 
-        return res.status(200).json({message: "User found",data:user});
-
+        return responseUtil.SuccessResponse(res, "User Found", user);
     } catch (error) {
         console.log(error);
-        
-        return res.status(500).json({message: "Internal server error",data:error});
+
+        return responseUtil.ErrorResponse(
+            res,
+            "Internal Server Error",
+            error as object
+        );
     }
 };
 
-const create = async (req: Request, res: Response): Promise<Response> => {
+const create = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
     try {
-        const user: TUser = req.body;
+        const user: TUser = userValidation.create.parse(req.body);
 
-        const newUser:TUser|null= await userModel.create(user);
+        const newUser: TUser | null = await userModel.create(user);
 
-        if(!newUser) return res.status(400).json({message: "User not created",data:null});
+        if (!newUser)
+            return responseUtil.ErrorResponse(
+                res,
+                "User Not Created",
+                {}
+            );
 
-        return res.status(201).json({message: "User created",data:newUser});
-
+        return responseUtil.SuccessResponse(
+            res,
+            "User Created",
+            newUser
+        );
     } catch (error) {
         console.log(error);
-        
-        return res.status(500).json({message: "Internal server error",data:error});
+
+        return responseUtil.ErrorResponse(
+            res,
+            "Internal Server Error",
+            error as object
+        );
     }
 };
 
-const updateById = async (req: Request, res: Response): Promise<Response> => {
+const updateById = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
     try {
-        const id:number = parseInt(req.params.id);
-        const user: TUser = req.body;
+        const id: number = parseInt(req.params.id);
 
-        const updatedUser= await userModel.updateById(id,user);
+        const user: TUser = userValidation.update.parse(req.body);
 
-        if(!updatedUser) return res.status(404).json({message: "User not found",data:null});
+        const updatedUser = await userModel.updateById(id, user);
 
-        return res.status(200).json({message: "User updated",data:updatedUser});
+        if (!updatedUser)
+            return responseUtil.ErrorResponse(
+                res,
+                "User Not Updated",
+                {}
+            );
 
+        return responseUtil.SuccessResponse(
+            res,
+            "User Updated",
+            updatedUser
+        );
     } catch (error) {
         console.log(error);
-        
-        return res.status(500).json({message: "Internal server error",data:error});
+
+        return responseUtil.ErrorResponse(
+            res,
+            "Internal Server Error",
+            error as object
+        );
     }
 };
 
-const deleteById = async (req: Request, res: Response): Promise<Response> => {
+const deleteById = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
     try {
-        const id:number = parseInt(req.params.id);
+        const id: number = parseInt(req.params.id);
 
-        const deletedUser= await userModel.deleteById(id);
+        const deletedUser = await userModel.deleteById(id);
 
-        if(!deletedUser) return res.status(404).json({message: "User not found",data:null});
+        if (!deletedUser)
+            responseUtil.ErrorResponse(res, "User Not Deleted", {});
 
-        return res.status(200).json({message: "User deleted",data:deletedUser});
-
+        return responseUtil.SuccessResponse(res, "User Deleted", {
+            deletedUser,
+        });
     } catch (error) {
         console.log(error);
-            
-        return res.status(500).json({message: "Internal server error",data:error});
+
+        return responseUtil.ErrorResponse(
+            res,
+            "Internal Server Error",
+            error as object
+        );
     }
 };
 

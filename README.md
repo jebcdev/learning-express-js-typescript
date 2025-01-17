@@ -37,7 +37,7 @@ Este proyecto forma parte de una serie de videos donde exploramos cada tema en p
 -   Implementación de rutas para crear, leer, actualizar y eliminar datos.
 -   Pruebas con herramientas como Postman o Thunder Client.
 
-### **04 - Validación con Zod**
+### **04 - Validación con Zod** ✅
 
 -   Extra: Crear Funcion para el retorno de errores en el catch.
 -   Uso de **Zod** para validar datos de entrada.
