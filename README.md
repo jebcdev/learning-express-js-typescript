@@ -10,7 +10,7 @@ Además, contaremos con la ayuda de **ChatGPT** para responder dudas, optimizar 
 
 Este proyecto forma parte de una serie de videos donde exploramos cada tema en profundidad, con ejemplos prácticos y explicaciones claras. Puedes acceder al código fuente aquí:
 
-👉 [Repositorio en GitHub](https://github.com/jebcdev/learning-express-js-typescript)
+👉 [Lista de Reproducción](https://www.youtube.com/playlist?list=PLek3UYLkoPpyiBhIcIzgg8EDZE6j1cP1a)
 
 ¡No olvides darle una ⭐ al repo si te gusta o encuentras útil este contenido! 😊
 
@@ -83,6 +83,6 @@ Este proyecto forma parte de una serie de videos donde exploramos cada tema en p
 
 Acompáñame en esta serie de videos donde exploramos cada tema paso a paso. Aprenderás desde los fundamentos hasta técnicas avanzadas, todo mientras construimos un proyecto real.
 
-🔗 **[Repositorio del Proyecto](https://github.com/jebcdev/learning-express-js-typescript)**
+🔗 **[Lista de Reproducción](https://www.youtube.com/playlist?list=PLek3UYLkoPpyiBhIcIzgg8EDZE6j1cP1a)**
 
 ✨ **¡Suscríbete y aprende conmigo!**
