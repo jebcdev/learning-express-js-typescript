@@ -43,7 +43,7 @@ Este proyecto forma parte de una serie de videos donde exploramos cada tema en p
 -   Uso de **Zod** para validar datos de entrada.
 -   Ejemplos de validaciones comunes para endpoints API.
 
-### **05 - Introducción a Prisma ORM**
+### **05 - Introducción a Prisma ORM** ✅
 
 -   Configuración e integración de Prisma.
 -   Definición de modelos y migraciones en la base de datos.
