@@ -17,7 +17,13 @@ const getAll = async (
     res: Response
 ): Promise<Response> => {
     try {
-        const users: TUser[] | null = await userModel.getAll();
+        const users: TUser[] | null = await userModel.findMany({
+            orderBy: [
+                {
+                    id: "desc",
+                },
+            ],
+        });
 
         if (!users)
             return responseUtil.ErrorResponse(
@@ -44,7 +50,11 @@ const getById = async (
 ): Promise<Response> => {
     try {
         const id: number = parseInt(req.params.id);
-        const user: TUser | null = await userModel.getById(id);
+        const user: TUser | null = await userModel.findUnique({
+            where: {
+                id: id,
+            },
+        });
 
         if (!user)
             return responseUtil.ErrorResponse(
@@ -70,9 +80,11 @@ const create = async (
     res: Response
 ): Promise<Response> => {
     try {
-        const user: TUser = userValidation.create.parse(req.body);
+        const data = userValidation.create.parse(req.body);
 
-        const newUser: TUser | null = await userModel.create(user);
+        const newUser = await userModel.create({
+            data,
+        });
 
         if (!newUser)
             return responseUtil.ErrorResponse(
@@ -104,9 +116,14 @@ const updateById = async (
     try {
         const id: number = parseInt(req.params.id);
 
-        const user: TUser = userValidation.update.parse(req.body);
+        const data = userValidation.update.parse(req.body);
 
-        const updatedUser = await userModel.updateById(id, user);
+        const updatedUser = await userModel.update({
+            where: {
+                id,
+            },
+            data,
+        });
 
         if (!updatedUser)
             return responseUtil.ErrorResponse(
@@ -138,7 +155,11 @@ const deleteById = async (
     try {
         const id: number = parseInt(req.params.id);
 
-        const deletedUser = await userModel.deleteById(id);
+        const deletedUser = await userModel.delete({
+            where: {
+                id,
+            },
+        });
 
         if (!deletedUser)
             responseUtil.ErrorResponse(res, "User Not Deleted", {});

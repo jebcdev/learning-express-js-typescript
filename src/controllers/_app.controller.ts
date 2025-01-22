@@ -14,6 +14,7 @@ const index = async (
             res,
             "Welcome to the API",
             {
+                name:"Learn ExpressJs - TypeScript API",
                 author: "{ JEBC-DeV }",
                 version: "0.0.1",
             }
