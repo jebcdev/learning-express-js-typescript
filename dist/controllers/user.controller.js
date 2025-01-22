@@ -13,6 +13,7 @@ exports.userController = void 0;
 const user_model_1 = require("../models/user.model");
 const responses_util_1 = require("../utils/responses.util");
 const user_validation_1 = require("../validations/user.validation");
+const bcrypt_util_1 = require("../utils/bcrypt.util");
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield user_model_1.userModel.findMany({
@@ -24,7 +25,9 @@ const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         if (!users)
             return responses_util_1.responseUtil.ErrorResponse(res, "Users Not Found", {});
-        return responses_util_1.responseUtil.SuccessResponse(res, "Users List", users);
+        // return responseUtil.SuccessResponse(res, "Users List", users);
+        const isMatch = yield bcrypt_util_1.BcryptUtil.ComparePassword("12345678", "$2a$10$Yj9XmSW0yTbylsr6NQ0/POrDIFeyshs9ljAFWoPdDDMB7BXNT2sfG");
+        return responses_util_1.responseUtil.SuccessResponse(res, "match?", { isMatch });
     }
     catch (error) {
         console.log(error);
@@ -51,6 +54,7 @@ const getById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = user_validation_1.userValidation.create.parse(req.body);
+        data.password = (yield bcrypt_util_1.BcryptUtil.HashPassword(data.password));
         const newUser = yield user_model_1.userModel.create({
             data,
         });
@@ -67,6 +71,9 @@ const updateById = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const id = parseInt(req.params.id);
         const data = user_validation_1.userValidation.update.parse(req.body);
+        if (data.password) {
+            data.password = (yield bcrypt_util_1.BcryptUtil.HashPassword(data.password));
+        }
         const updatedUser = yield user_model_1.userModel.update({
             where: {
                 id,

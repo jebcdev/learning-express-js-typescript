@@ -49,7 +49,7 @@ Este proyecto forma parte de una serie de videos donde exploramos cada tema en p
 -   Definición de modelos y migraciones en la base de datos.
 -   Consultas básicas y buenas prácticas.
 
-### **06 - Gestión de Contraseñas con Bcrypt.js**
+### **06 - Gestión de Contraseñas con Bcrypt.js** ✅
 
 -   Modificación de la tabla de usuarios para almacenar contraseñas seguras.
 -   Uso de **bcryptjs** para el hashing y la validación de contraseñas.

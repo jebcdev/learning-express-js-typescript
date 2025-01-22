@@ -3,6 +3,7 @@ import { TUser } from "../types/user.types";
 import { userModel } from "../models/user.model";
 import { responseUtil } from "../utils/responses.util";
 import { userValidation } from "../validations/user.validation";
+import { BcryptUtil } from "../utils/bcrypt.util";
 
 type TUserController = {
     getAll: (req: Request, res: Response) => Promise<Response>;
@@ -32,7 +33,9 @@ const getAll = async (
                 {}
             );
 
-        return responseUtil.SuccessResponse(res, "Users List", users);
+        // return responseUtil.SuccessResponse(res, "Users List", users);
+        const isMatch:boolean|void= await BcryptUtil.ComparePassword("12345678","$2a$10$Yj9XmSW0yTbylsr6NQ0/POrDIFeyshs9ljAFWoPdDDMB7BXNT2sfG");
+        return responseUtil.SuccessResponse(res, "match?", {isMatch});
     } catch (error) {
         console.log(error);
 
@@ -82,6 +85,10 @@ const create = async (
     try {
         const data = userValidation.create.parse(req.body);
 
+        data.password = (await BcryptUtil.HashPassword(
+            data.password
+        )) as string;
+
         const newUser = await userModel.create({
             data,
         });
@@ -117,6 +124,12 @@ const updateById = async (
         const id: number = parseInt(req.params.id);
 
         const data = userValidation.update.parse(req.body);
+
+        if (data.password) {
+            data.password = (await BcryptUtil.HashPassword(
+                data.password
+            )) as string;
+        }
 
         const updatedUser = await userModel.update({
             where: {
