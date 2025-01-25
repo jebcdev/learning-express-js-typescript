@@ -33,9 +33,8 @@ const getAll = async (
                 {}
             );
 
-        // return responseUtil.SuccessResponse(res, "Users List", users);
-        const isMatch:boolean|void= await BcryptUtil.ComparePassword("12345678","$2a$10$Yj9XmSW0yTbylsr6NQ0/POrDIFeyshs9ljAFWoPdDDMB7BXNT2sfG");
-        return responseUtil.SuccessResponse(res, "match?", {isMatch});
+         return responseUtil.SuccessResponse(res, "Users List", users);
+        
     } catch (error) {
         console.log(error);
 

@@ -54,13 +54,13 @@ Este proyecto forma parte de una serie de videos donde exploramos cada tema en p
 -   Modificación de la tabla de usuarios para almacenar contraseñas seguras.
 -   Uso de **bcryptjs** para el hashing y la validación de contraseñas.
 
-### **07 - Autenticación y Protección de Rutas**
+### **07 - Autenticación y Protección de Rutas** ✅
 
 -   Implementación de registro y login de usuarios.
 -   Protección de rutas mediante tokens.
 -   Creación de un endpoint "Perfil" accesible solo para usuarios autenticados.
 
-### **08 - BONUS - Protección del CRUD de Usuarios para Administradores**
+### **08 - BONUS - Protección del CRUD de Usuarios para Administradores** ✅
 
 -   Implementación de roles de usuario (administrador y estándar).
 -   Restricción de acciones administrativas en el CRUD.

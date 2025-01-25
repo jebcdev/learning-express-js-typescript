@@ -19,7 +19,12 @@ const update = zod_1.default.object({
     password: zod_1.default.string().min(8).max(100).optional(),
     isAdmin: zod_1.default.boolean().optional(),
 });
+const login = zod_1.default.object({
+    email: zod_1.default.string().email(),
+    password: zod_1.default.string().min(8).max(100),
+});
 exports.userValidation = {
     create,
     update,
+    login,
 };

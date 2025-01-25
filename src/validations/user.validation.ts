@@ -1,6 +1,5 @@
 import z from "zod";
 
-
 const create = z.object({
     name: z.string().min(3).max(100),
     surname: z.string().min(3).max(100),
@@ -17,7 +16,13 @@ const update = z.object({
     isAdmin: z.boolean().optional(),
 });
 
+const login = z.object({
+    email: z.string().email(),
+    password: z.string().min(8).max(100),
+});
+
 export const userValidation = {
     create,
     update,
+    login,
 };

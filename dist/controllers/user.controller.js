@@ -25,9 +25,7 @@ const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         if (!users)
             return responses_util_1.responseUtil.ErrorResponse(res, "Users Not Found", {});
-        // return responseUtil.SuccessResponse(res, "Users List", users);
-        const isMatch = yield bcrypt_util_1.BcryptUtil.ComparePassword("12345678", "$2a$10$Yj9XmSW0yTbylsr6NQ0/POrDIFeyshs9ljAFWoPdDDMB7BXNT2sfG");
-        return responses_util_1.responseUtil.SuccessResponse(res, "match?", { isMatch });
+        return responses_util_1.responseUtil.SuccessResponse(res, "Users List", users);
     }
     catch (error) {
         console.log(error);
